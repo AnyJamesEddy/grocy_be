@@ -1,0 +1,5 @@
+POSTGRES_USER=user
+POSTGRES_PASSWORD=password
+POSTGRES_DB=grocy_db
+DB_HOST=localhost
+DB_PORT=port
