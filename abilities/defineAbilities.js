@@ -10,14 +10,9 @@ function defineAbilitiesFor(user) {
         can('manage', 'all');
     } else if (user.role === 'premium_user') {
         can('read', 'User', { authorId: user.id });
-        can('read', 'Structure', { authorId: user.id });
-        can('create', 'Structure', { authorId: user.id });
         can('update', 'User', { authorId: user.id });
-        can('update', 'Structure', { authorId: user.id });
     } else if (user.role === 'standard_user') {
         can('read', 'User', { authorId: user.id });
-        can('read', 'Structure', { authorId: user.id });
-        can('create', 'Structure', { authorId: user.id });
         can('update', 'User', { authorId: user.id });
     } else if (user.role === 'free_user') {
         can('read', 'User',{ authorId: user.id });

@@ -10,6 +10,7 @@ import userRoutes from "../routes/authentication/user-routes.js";
 dotenv.config();
 
 const App = express();
+
 App.use(cors({
     origin: 'http://localhost:4200',
     credentials: true,
@@ -39,12 +40,10 @@ async function authenticate(port) {
         catch (err) {
             console.log("Errore di avvio Autenticazione: ",err);
         }
-
         // auth.App.get('/', (req, res) => {
         //     auth.send('✅ Authentication is up and running!');
         // });
     }
-
     await App.listen(port);
 }
 

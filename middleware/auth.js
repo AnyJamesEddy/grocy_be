@@ -2,12 +2,19 @@ import {ForbiddenError} from "@casl/ability";
 import jwt from "jsonwebtoken";
 import {defineAbilitiesFor} from "../abilities/defineAbilities.js";
 
-const authenticate= async (req, res, next)=> {
+import User from "../models/authentication/user.js";
+
+const authenticate = async (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) return res.sendStatus(401);
 
     try {
         const decoded = jwt.verify(token, 'someSuperSecretSecret');
+
+        const user = await User.findByPk(decoded.id);
+        if (!user || user.accessToken !== token) {
+            return res.sendStatus(403); // "C'è stato un logout manuale"
+        }
 
         req.user = { id: decoded.id, role: decoded.role };
         req.ability = defineAbilitiesFor(req.user);
@@ -16,7 +23,8 @@ const authenticate= async (req, res, next)=> {
     } catch (err) {
         return res.sendStatus(403);
     }
-}
+};
+
 
 function authorize(action, subject) {
     return (req, res, next) => {

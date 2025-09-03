@@ -6,6 +6,8 @@ const authenticationRouter = Router();
 
 authenticationRouter.post('/login', authentication.login);
 
+authenticationRouter.post('/signout', authenticate, authentication.logout);
+
 authenticationRouter.get('/user/me',authenticate, authorize('read', 'User'), authentication.getInfo);
 
 export default authenticationRouter;
