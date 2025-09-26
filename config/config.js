@@ -1,8 +1,9 @@
 import {Sequelize} from 'sequelize';
 import * as dotenv from "dotenv";
 import 'dotenv/config';
+import {searchEnv} from "../util/functions/searchEnv.js";
 
-dotenv.config();
+dotenv.config({ path: searchEnv() });
 
 let postgresConnection = {};
 

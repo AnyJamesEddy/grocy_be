@@ -6,8 +6,9 @@ import auth from "../src/services/grocy-authentication.js";
 import bodyParser from 'body-parser';
 import authenticationRoutes from "../routes/authentication/authentication-routes.js";
 import userRoutes from "../routes/authentication/user-routes.js";
+import {searchEnv} from "../util/functions/searchEnv.js";
 
-dotenv.config();
+dotenv.config({ path: searchEnv() });
 
 const App = express();
 

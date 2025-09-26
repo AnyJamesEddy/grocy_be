@@ -38,6 +38,6 @@ testem.log
 /typings
 
 # System files
-.env
+.env.development
 .DS_Store
 Thumbs.db
